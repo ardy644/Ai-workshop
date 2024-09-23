@@ -1,5 +1,4 @@
 import { usePostDownloadMultipleFlows } from "@/controllers/API/queries/flows";
-import useDeleteFlow from "@/hooks/flows/use-delete-flow";
 import { useEffect, useMemo, useState } from "react";
 import { FormProvider, useForm, useWatch } from "react-hook-form";
 import { useLocation, useParams } from "react-router-dom";
@@ -29,10 +28,12 @@ export default function ComponentsComponent({
   type = "all",
   currentFolder,
   isLoading,
+  deleteFlow,
 }: {
   type?: string;
   currentFolder?: FolderType;
   isLoading: boolean;
+  deleteFlow: ({ id }: { id: string[] }) => Promise<void>;
 }) {
   const { folderId } = useParams();
 
@@ -176,8 +177,6 @@ export default function ComponentsComponent({
     handleExport,
   );
 
-  const deleteFlow = useDeleteFlow();
-
   const handleDeleteMultiple = () => {
     deleteFlow({ id: selectedFlowsComponentsCards })
       .then(() => {
@@ -234,7 +233,7 @@ export default function ComponentsComponent({
               <EmptyComponent />
             ) : (
               <div className="grid w-full gap-4 md:grid-cols-2 lg:grid-cols-2">
-                {data?.length > 0 && isLoading === false ? (
+                {data?.length > 0 ? (
                   <>
                     {data?.map((item) => (
                       <FormProvider {...methods} key={item.id}>

@@ -1,5 +1,6 @@
 import ast
 import types
+from textwrap import dedent
 from uuid import uuid4
 
 import pytest
@@ -401,6 +402,7 @@ def test_custom_component_get_function_entrypoint_args_no_args():
     the CustomComponent class with a build method with no arguments.
     """
     my_code = """
+from langflow.custom import CustomComponent
 class MyMainClass(CustomComponent):
     def build():
         pass"""
@@ -416,6 +418,7 @@ def test_custom_component_get_function_entrypoint_return_type_no_return_type():
     CustomComponent class with a build method with no return type.
     """
     my_code = """
+from langflow.custom import CustomComponent
 class MyClass(CustomComponent):
     def build():
         pass"""
@@ -547,3 +550,24 @@ def test_feature_flags_add_toolkit_output(active_user, code_component_with_multi
     FEATURE_FLAGS.add_toolkit_output = True
     frontnd_node_dict, _ = build_custom_component_template(code_component_with_multiple_outputs, active_user.id)
     assert len(frontnd_node_dict["outputs"]) == len_outputs + 1
+    
+def test_custom_component_subclass_from_lctoolcomponent():
+    # Import LCToolComponent and create a subclass
+    code = dedent("""
+    from langflow.base.langchain_utilities.model import LCToolComponent
+    from langchain_core.tools import Tool
+    class MyComponent(LCToolComponent):
+        name: str = "MyComponent"
+        description: str = "MyComponent"
+
+        def build_tool(self) -> Tool:
+            return Tool(name="MyTool", description="MyTool")
+
+        def run_model(self)-> Data:
+            return Data(data="Hello World")
+    """)
+    component = Component(_code=code)
+    frontend_node, _ = build_custom_component_template(component)
+    assert "outputs" in frontend_node
+    assert frontend_node["outputs"][0]["types"] != []
+    assert frontend_node["outputs"][1]["types"] != []

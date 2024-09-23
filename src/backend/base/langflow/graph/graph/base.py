@@ -319,7 +319,7 @@ class Graph:
         for vertex in self.vertices:
             if vertex._custom_component is None:
                 continue
-            for output in vertex._custom_component.outputs:
+            for output in vertex._custom_component._outputs_map.values():
                 for key, value in config["output"].items():
                     setattr(output, key, value)
 
@@ -556,7 +556,8 @@ class Graph:
         self.tracing_service.set_run_name(name)
 
     async def initialize_run(self):
-        await self.tracing_service.initialize_tracers()
+        if self.tracing_service:
+            await self.tracing_service.initialize_tracers()
 
     async def end_all_traces(self, outputs: dict[str, Any] | None = None, error: Exception | None = None):
         if not self.tracing_service:

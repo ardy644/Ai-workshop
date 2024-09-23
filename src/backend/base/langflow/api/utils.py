@@ -3,6 +3,9 @@ import warnings
 from typing import TYPE_CHECKING, Any
 
 from fastapi import HTTPException
+from langflow.services.database.models.transactions.model import TransactionTable
+from langflow.services.database.models.vertex_builds.model import VertexBuildTable
+from sqlalchemy import delete
 from sqlmodel import Session
 
 from langflow.graph.graph.base import Graph
@@ -85,10 +88,12 @@ def get_is_component_from_data(data: dict):
 
 
 async def check_langflow_version(component: StoreComponentCreate):
-    from langflow.version.version import __version__ as current_version  # type: ignore
+    from langflow.utils.version import get_version_info
+
+    __version__ = get_version_info()["version"]
 
     if not component.last_tested_version:
-        component.last_tested_version = current_version
+        component.last_tested_version = __version__
 
     langflow_version = get_lf_version_from_pypi()
     if langflow_version is None:
@@ -239,3 +244,12 @@ def parse_value(value: Any, input_type: str) -> Any:
         return float(value) if value is not None else None
     else:
         return value
+
+
+async def cascade_delete_flow(session: Session, flow: Flow):
+    try:
+        session.exec(delete(TransactionTable).where(TransactionTable.flow_id == flow.id))  # type: ignore
+        session.exec(delete(VertexBuildTable).where(VertexBuildTable.flow_id == flow.id))  # type: ignore
+        session.exec(delete(Flow).where(Flow.id == flow.id))  # type: ignore
+    except Exception as e:
+        raise RuntimeError(f"Unable to cascade delete flow: ${flow.id}", e)

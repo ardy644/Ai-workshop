@@ -2,7 +2,7 @@ import { LANGFLOW_ACCESS_TOKEN } from "@/constants/constants";
 import { useCustomApiHeaders } from "@/customization/hooks/use-custom-api-headers";
 import useAuthStore from "@/stores/authStore";
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from "axios";
-import pako from "pako";
+import * as fetchIntercept from "fetch-intercept";
 import { useContext, useEffect } from "react";
 import { Cookies } from "react-cookie";
 import { BuildStatus } from "../../constants/enums";
@@ -28,6 +28,20 @@ function ApiInterceptor() {
   const customHeaders = useCustomApiHeaders();
 
   useEffect(() => {
+    const unregister = fetchIntercept.register({
+      request: function (url, config) {
+        const accessToken = cookies.get(LANGFLOW_ACCESS_TOKEN);
+        if (accessToken && !isAuthorizedURL(config?.url)) {
+          config.headers["Authorization"] = `Bearer ${accessToken}`;
+        }
+
+        for (const [key, value] of Object.entries(customHeaders)) {
+          config.headers[key] = value;
+        }
+        return [url, config];
+      },
+    });
+
     const interceptor = api.interceptors.response.use(
       (response) => response,
       async (error: AxiosError) => {
@@ -35,7 +49,7 @@ function ApiInterceptor() {
           error?.response?.status === 403 || error?.response?.status === 401;
 
         if (isAuthenticationError) {
-          if (!autoLogin) {
+          if (autoLogin !== undefined && !autoLogin) {
             if (error?.config?.url?.includes("github")) {
               return Promise.reject(error);
             }
@@ -128,8 +142,9 @@ function ApiInterceptor() {
       // Clean up the interceptors when the component unmounts
       api.interceptors.response.eject(interceptor);
       api.interceptors.request.eject(requestInterceptor);
+      unregister();
     };
-  }, [accessToken, setErrorData, customHeaders]);
+  }, [accessToken, setErrorData, customHeaders, autoLogin]);
 
   function checkErrorCount() {
     if (isLoginPage) return;
@@ -223,10 +238,6 @@ async function performStreamingRequest({
     // this flag is fundamental to ensure server stops tasks when client disconnects
     Connection: "close",
   };
-  const accessToken = cookies.get(LANGFLOW_ACCESS_TOKEN);
-  if (accessToken) {
-    headers["Authorization"] = `Bearer ${accessToken}`;
-  }
   const controller = new AbortController();
   useFlowStore.getState().setBuildController(controller);
   const params = {
