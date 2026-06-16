@@ -1,5 +1,5 @@
 import { cloneDeep } from "lodash";
-import { useEffect, useRef } from "react";
+import { memo, useEffect, useRef } from "react";
 import { useUpdateNodeInternals } from "reactflow";
 import { default as IconComponent } from "../../../../components/genericIconComponent";
 import ShadTooltip from "../../../../components/shadTooltipComponent";
@@ -22,7 +22,7 @@ import OutputComponent from "../OutputComponent";
 import HandleRenderComponent from "../handleRenderComponent";
 import OutputModal from "../outputModal";
 
-export default function NodeOutputField({
+const NodeOutputField = ({
   selected,
   data,
   title,
@@ -34,7 +34,7 @@ export default function NodeOutputField({
   type,
   outputName,
   outputProxy,
-}: NodeOutputFieldComponentType): JSX.Element {
+}: NodeOutputFieldComponentType): JSX.Element => {
   const ref = useRef<HTMLDivElement>(null);
   const nodes = useFlowStore((state) => state.nodes);
   const edges = useFlowStore((state) => state.edges);
@@ -215,4 +215,6 @@ export default function NodeOutputField({
       </>
     </div>
   );
-}
+};
+
+export default memo(NodeOutputField);
