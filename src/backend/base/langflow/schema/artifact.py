@@ -54,15 +54,11 @@ def post_process_raw(raw, artifact_type: str):
     if artifact_type == ArtifactType.STREAM.value:
         raw = ""
     elif artifact_type == ArtifactType.ARRAY.value:
-        _raw = []
-        for item in raw:
-            if hasattr(item, "dict"):
-                _raw.append(recursive_serialize_or_str(item))
-            elif hasattr(item, "model_dump"):
-                _raw.append(recursive_serialize_or_str(item))
-            else:
-                _raw.append(str(item))
-        raw = _raw
+        # ⚡ Bolt Optimization: Replace loop with list comprehension for faster array post-processing
+        raw = [
+            recursive_serialize_or_str(item) if hasattr(item, "dict") or hasattr(item, "model_dump") else str(item)
+            for item in raw
+        ]
     elif artifact_type == ArtifactType.UNKNOWN.value and raw is not None:
         if isinstance(raw, (BaseModel, dict)):
             try:
