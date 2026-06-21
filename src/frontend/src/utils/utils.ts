@@ -388,14 +388,18 @@ export function extractColumnsFromRows(
   function union() {
     for (const row of rows) {
       for (const key in row) {
-        columnsKeys[key] = {
-          headerName: key,
-          field: key,
-          filter: true,
-          cellRenderer: TableAutoCellRender,
-          suppressAutoSize: true,
-          tooltipField: key,
-        };
+        // Optimization: Only create the column definition if it doesn't already exist.
+        // This prevents re-allocating identical configuration objects for every key in every row.
+        if (!columnsKeys[key]) {
+          columnsKeys[key] = {
+            headerName: key,
+            field: key,
+            filter: true,
+            cellRenderer: TableAutoCellRender,
+            suppressAutoSize: true,
+            tooltipField: key,
+          };
+        }
       }
     }
   }
