@@ -137,8 +137,11 @@ def recursive_serialize_or_str(obj):
             return {k: recursive_serialize_or_str(v) for k, v in obj.dict().items()}
         elif hasattr(obj, "model_dump"):
             return {k: recursive_serialize_or_str(v) for k, v in obj.model_dump().items()}
-        elif issubclass(obj, BaseModel):
-            # This a type BaseModel and not an instance of it
+        elif isinstance(obj, type) and issubclass(obj, BaseModel):
+            # ⚡ Bolt Optimization: Using isinstance(obj, type) before issubclass
+            # prevents a TypeError from being raised and caught when obj is a primitive
+            # value (like an int or str), avoiding slow exception handling in recursive calls.
+            # This is a type BaseModel and not an instance of it
             return repr(obj)
         return str(obj)
     except Exception:
