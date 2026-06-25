@@ -1,5 +1,5 @@
 import { usePostValidateComponentCode } from "@/controllers/API/queries/nodes/use-post-validate-component-code";
-import { useEffect, useMemo, useState } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import { NodeToolbar, useUpdateNodeInternals } from "reactflow";
 import IconComponent, {
@@ -32,7 +32,7 @@ import NodeOutputField from "./components/NodeOutputfield";
 import NodeStatus from "./components/NodeStatus";
 import { NodeIcon } from "./components/nodeIcon";
 
-export default function GenericNode({
+const GenericNode = ({
   data,
   selected,
 }: {
@@ -40,7 +40,7 @@ export default function GenericNode({
   selected: boolean;
   xPos?: number;
   yPos?: number;
-}): JSX.Element {
+}): JSX.Element => {
   const types = useTypesStore((state) => state.types);
   const templates = useTypesStore((state) => state.templates);
   const deleteNode = useFlowStore((state) => state.deleteNode);
@@ -420,4 +420,6 @@ export default function GenericNode({
       </div>
     </>
   );
-}
+};
+
+export default memo(GenericNode);
