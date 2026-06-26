@@ -189,7 +189,7 @@ class HCDVectorStoreComponent(LCVectorStoreComponent):
             from astrapy.authentication import UsernamePasswordTokenProvider
         except ImportError:
             raise ImportError(
-                "Could not import astrapy integration package. " "Please install it with `pip install astrapy`."
+                "Could not import astrapy integration package. Please install it with `pip install astrapy`."
             )
 
         try:

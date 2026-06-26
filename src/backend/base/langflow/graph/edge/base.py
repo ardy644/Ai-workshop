@@ -83,7 +83,7 @@ class Edge:
         if not self.valid_handles:
             logger.debug(self.source_handle)
             logger.debug(self.target_handle)
-            raise ValueError(f"Edge between {source.display_name} and {target.display_name} " f"has invalid handles")
+            raise ValueError(f"Edge between {source.display_name} and {target.display_name} has invalid handles")
 
     def _legacy_validate_handles(self, source, target) -> None:
         if self.target_handle.input_types is None:
@@ -96,7 +96,7 @@ class Edge:
         if not self.valid_handles:
             logger.debug(self.source_handle)
             logger.debug(self.target_handle)
-            raise ValueError(f"Edge between {source.vertex_type} and {target.vertex_type} " f"has invalid handles")
+            raise ValueError(f"Edge between {source.vertex_type} and {target.vertex_type} has invalid handles")
 
     def __setstate__(self, state):
         self.source_id = state["source_id"]
@@ -152,7 +152,7 @@ class Edge:
         if no_matched_type:
             logger.debug(self.source_types)
             logger.debug(self.target_reqs)
-            raise ValueError(f"Edge between {source.vertex_type} and {target.vertex_type} " f"has no matched type. ")
+            raise ValueError(f"Edge between {source.vertex_type} and {target.vertex_type} has no matched type. ")
 
     def _legacy_validate_edge(self, source, target) -> None:
         # Validate that the outputs of the source node are valid inputs
@@ -173,7 +173,7 @@ class Edge:
         if no_matched_type:
             logger.debug(self.source_types)
             logger.debug(self.target_reqs)
-            raise ValueError(f"Edge between {source.vertex_type} and {target.vertex_type} " f"has no matched type")
+            raise ValueError(f"Edge between {source.vertex_type} and {target.vertex_type} has no matched type")
 
     def __repr__(self) -> str:
         if (hasattr(self, "source_handle") and self.source_handle) and (

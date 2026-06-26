@@ -79,12 +79,12 @@ class DirectoryReader:
                         component_tuple = (*build_component(component), component)
                         components.append(component_tuple)
                 except Exception as e:
-                    logger.debug(f"Error while loading component { component['name']}")
+                    logger.debug(f"Error while loading component {component['name']}")
                     logger.debug(e)
                     continue
             items.append({"name": menu["name"], "path": menu["path"], "components": components})
         filtered = [menu for menu in items if menu["components"]]
-        logger.debug(f'Filtered components {"with errors" if with_errors else ""}: {len(filtered)}')
+        logger.debug(f"Filtered components {'with errors' if with_errors else ''}: {len(filtered)}")
         return {"menu": filtered}
 
     def validate_code(self, file_content):

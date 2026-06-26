@@ -37,7 +37,7 @@ async def event_generator(request: Request):
                         last_read_item = item
         if to_write:
             for ts, msg in to_write:
-                yield f"{json.dumps({ts:msg})}\n\n"
+                yield f"{json.dumps({ts: msg})}\n\n"
         else:
             current_not_sent += 1
             if current_not_sent == 5:

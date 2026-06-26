@@ -127,7 +127,7 @@ class CassandraGraphVectorStoreComponent(LCVectorStoreComponent):
             from langchain_community.utilities.cassandra import SetupMode
         except ImportError:
             raise ImportError(
-                "Could not import cassio integration package. " "Please install it with `pip install cassio`."
+                "Could not import cassio integration package. Please install it with `pip install cassio`."
             )
 
         database_ref = self.database_ref

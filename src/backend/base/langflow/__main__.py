@@ -513,7 +513,7 @@ def api_key_banner(unmasked_api_key):
         f"[bold blue]{unmasked_api_key.api_key}[/bold blue]\n\n"
         "This is the only time the API key will be displayed. \n"
         "Make sure to store it in a secure location. \n\n"
-        f"The API key has been copied to your clipboard. [bold]{['Ctrl','Cmd'][is_mac]} + V[/bold] to paste it.",
+        f"The API key has been copied to your clipboard. [bold]{['Ctrl', 'Cmd'][is_mac]} + V[/bold] to paste it.",
         box=box.ROUNDED,
         border_style="blue",
         expand=False,

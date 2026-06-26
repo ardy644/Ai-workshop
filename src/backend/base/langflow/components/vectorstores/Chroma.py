@@ -108,7 +108,7 @@ class ChromaVectorStoreComponent(LCVectorStoreComponent):
             from langchain_chroma import Chroma
         except ImportError:
             raise ImportError(
-                "Could not import Chroma integration package. " "Please install it with `pip install langchain-chroma`."
+                "Could not import Chroma integration package. Please install it with `pip install langchain-chroma`."
             )
         # Chroma settings
         chroma_settings = None
