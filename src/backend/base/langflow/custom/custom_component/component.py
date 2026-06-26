@@ -413,8 +413,7 @@ class Component(CustomComponent):
         if isinstance(value, Component):
             methods = ", ".join([f"'{output.method}'" for output in value.outputs])
             raise ValueError(
-                f"You set {value.display_name} as value for `{key}`. "
-                f"You should pass one of the following: {methods}"
+                f"You set {value.display_name} as value for `{key}`. You should pass one of the following: {methods}"
             )
         self._set_input_value(key, value)
         self._parameters[key] = value
@@ -486,7 +485,7 @@ class Component(CustomComponent):
                 close_match = find_closest_match(name, list(template.keys()))
                 if close_match:
                     raise ValueError(
-                        f"Parameter '{name}' not found in {self.__class__.__name__}. " f"Did you mean '{close_match}'?"
+                        f"Parameter '{name}' not found in {self.__class__.__name__}. Did you mean '{close_match}'?"
                     )
                 raise ValueError(f"Parameter {name} not found in {self.__class__.__name__}. ")
 

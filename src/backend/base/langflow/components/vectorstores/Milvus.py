@@ -77,7 +77,7 @@ class MilvusVectorStoreComponent(LCVectorStoreComponent):
             from langchain_milvus.vectorstores import Milvus as LangchainMilvus
         except ImportError:
             raise ImportError(
-                "Could not import Milvus integration package. " "Please install it with `pip install langchain-milvus`."
+                "Could not import Milvus integration package. Please install it with `pip install langchain-milvus`."
             )
         self.connection_args.update(uri=self.uri, token=self.password)
         milvus_store = LangchainMilvus(

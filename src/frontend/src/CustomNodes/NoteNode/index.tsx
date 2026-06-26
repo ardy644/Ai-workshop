@@ -1,3 +1,4 @@
+import { memo } from "react";
 import {
   COLOR_OPTIONS,
   NOTE_NODE_MAX_HEIGHT,
@@ -107,4 +108,4 @@ function NoteNode({
   );
 }
 
-export default NoteNode;
+export default memo(NoteNode);

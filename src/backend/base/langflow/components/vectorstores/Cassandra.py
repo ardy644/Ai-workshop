@@ -139,7 +139,7 @@ class CassandraVectorStoreComponent(LCVectorStoreComponent):
             from langchain_community.utilities.cassandra import SetupMode
         except ImportError:
             raise ImportError(
-                "Could not import cassio integration package. " "Please install it with `pip install cassio`."
+                "Could not import cassio integration package. Please install it with `pip install cassio`."
             )
 
         from uuid import UUID
