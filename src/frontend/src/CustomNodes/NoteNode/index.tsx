@@ -7,7 +7,7 @@ import {
 } from "@/constants/constants";
 import { noteDataType } from "@/types/flow";
 import { cn } from "@/utils/utils";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { memo, useEffect, useMemo, useRef, useState } from "react";
 import { NodeResizer, NodeToolbar } from "reactflow";
 import IconComponent from "../../components/genericIconComponent";
 import NodeDescription from "../GenericNode/components/NodeDescription";
@@ -107,4 +107,6 @@ function NoteNode({
   );
 }
 
-export default NoteNode;
+// ⚡ Bolt: Wrapped NoteNode in React.memo to prevent unnecessary re-renders when
+// the React Flow canvas changes (e.g., during panning or zooming). This reduces expensive DOM recalculations.
+export default memo(NoteNode);
