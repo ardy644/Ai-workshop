@@ -107,4 +107,6 @@ function NoteNode({
   );
 }
 
+// ⚡ Bolt: Wrapped NoteNode in React.memo to prevent unnecessary re-renders when
+// the React Flow canvas changes (e.g., during panning or zooming). This reduces expensive DOM recalculations.
 export default memo(NoteNode);

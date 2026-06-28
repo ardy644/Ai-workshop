@@ -422,4 +422,6 @@ function GenericNode({
   );
 }
 
+// ⚡ Bolt: Wrapped GenericNode in React.memo to prevent unnecessary re-renders when
+// the React Flow canvas changes (e.g., during panning or zooming). This reduces expensive DOM recalculations.
 export default memo(GenericNode);
