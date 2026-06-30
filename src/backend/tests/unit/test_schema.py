@@ -42,8 +42,8 @@ class TestInput:
     def test_post_process_type_function(self):
         assert post_process_type(int) == [int]
         assert post_process_type(list[int]) == [int]
-        assert set(post_process_type(Union[int, str])) == set([int, str])
-        assert set(post_process_type(Union[int, Sequence[str]])) == set([int, str])
+        assert post_process_type(Union[int, str]) == [int, str]
+        assert post_process_type(Union[int, Sequence[str]]) == [int, str]
         assert post_process_type(Union[int, Sequence[int]]) == [int]
 
     def test_input_to_dict(self):
@@ -110,7 +110,7 @@ class TestPostProcessType:
         assert post_process_type(list[int]) == [int]
 
     def test_union_type(self):
-        assert set(post_process_type(Union[int, str])) == set([int, str])
+        assert post_process_type(Union[int, str]) == [int, str]
 
     def test_custom_type(self):
         class CustomType:
