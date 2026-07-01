@@ -7,13 +7,13 @@ import {
 } from "@/constants/constants";
 import { noteDataType } from "@/types/flow";
 import { cn } from "@/utils/utils";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { memo, useEffect, useMemo, useRef, useState } from "react";
 import { NodeResizer, NodeToolbar } from "reactflow";
 import IconComponent from "../../components/genericIconComponent";
 import NodeDescription from "../GenericNode/components/NodeDescription";
 import NodeName from "../GenericNode/components/NodeName";
 import NoteToolbarComponent from "./NoteToolbarComponent";
-function NoteNode({
+function NoteNodeComponent({
   data,
   selected,
 }: {
@@ -107,4 +107,4 @@ function NoteNode({
   );
 }
 
-export default NoteNode;
+export default memo(NoteNodeComponent);
