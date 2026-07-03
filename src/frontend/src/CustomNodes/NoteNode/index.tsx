@@ -7,13 +7,15 @@ import {
 } from "@/constants/constants";
 import { noteDataType } from "@/types/flow";
 import { cn } from "@/utils/utils";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { memo, useEffect, useMemo, useRef, useState } from "react";
 import { NodeResizer, NodeToolbar } from "reactflow";
 import IconComponent from "../../components/genericIconComponent";
 import NodeDescription from "../GenericNode/components/NodeDescription";
 import NodeName from "../GenericNode/components/NodeName";
 import NoteToolbarComponent from "./NoteToolbarComponent";
-function NoteNode({
+
+// Memoize custom node components to prevent unnecessary re-renders during ReactFlow canvas interactions (like panning and zooming)
+const NoteNode = memo(function NoteNode({
   data,
   selected,
 }: {
@@ -105,6 +107,6 @@ function NoteNode({
       </div>
     </>
   );
-}
+});
 
 export default NoteNode;
