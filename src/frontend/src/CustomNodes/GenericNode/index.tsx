@@ -32,7 +32,9 @@ import NodeOutputField from "./components/NodeOutputfield";
 import NodeStatus from "./components/NodeStatus";
 import { NodeIcon } from "./components/nodeIcon";
 
-export default function GenericNode({
+import React from "react";
+
+function GenericNodeComponent({
   data,
   selected,
 }: {
@@ -421,3 +423,6 @@ export default function GenericNode({
     </>
   );
 }
+
+// Wrap the component in React.memo to prevent unnecessary re-renders when interacting with the ReactFlow canvas (e.g., panning, zooming).
+export default React.memo(GenericNodeComponent);
