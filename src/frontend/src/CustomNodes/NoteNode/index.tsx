@@ -7,7 +7,7 @@ import {
 } from "@/constants/constants";
 import { noteDataType } from "@/types/flow";
 import { cn } from "@/utils/utils";
-import { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { NodeResizer, NodeToolbar } from "reactflow";
 import IconComponent from "../../components/genericIconComponent";
 import NodeDescription from "../GenericNode/components/NodeDescription";
@@ -107,4 +107,5 @@ function NoteNode({
   );
 }
 
-export default NoteNode;
+// Wrap the component in React.memo to prevent unnecessary re-renders when interacting with the ReactFlow canvas (e.g., panning, zooming).
+export default React.memo(NoteNode);
