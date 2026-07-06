@@ -7,13 +7,14 @@ import {
 } from "@/constants/constants";
 import { noteDataType } from "@/types/flow";
 import { cn } from "@/utils/utils";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { memo, useEffect, useMemo, useRef, useState } from "react";
 import { NodeResizer, NodeToolbar } from "reactflow";
 import IconComponent from "../../components/genericIconComponent";
 import NodeDescription from "../GenericNode/components/NodeDescription";
 import NodeName from "../GenericNode/components/NodeName";
 import NoteToolbarComponent from "./NoteToolbarComponent";
-function NoteNode({
+
+function NoteNodeComponent({
   data,
   selected,
 }: {
@@ -43,6 +44,7 @@ function NoteNode({
   );
   return (
     <>
+      {/* ⚡ Bolt Optimization: NoteNode is memoized to prevent unnecessary re-renders during canvas operations like panning/zooming */}
       {MemoNoteToolbarComponent}
       <NodeResizer
         minWidth={NOTE_NODE_MIN_WIDTH}
@@ -107,4 +109,4 @@ function NoteNode({
   );
 }
 
-export default NoteNode;
+export default memo(NoteNodeComponent);
