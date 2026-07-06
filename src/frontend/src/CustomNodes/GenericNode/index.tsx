@@ -1,5 +1,5 @@
 import { usePostValidateComponentCode } from "@/controllers/API/queries/nodes/use-post-validate-component-code";
-import { useEffect, useMemo, useState } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import { NodeToolbar, useUpdateNodeInternals } from "reactflow";
 import IconComponent, {
@@ -32,7 +32,7 @@ import NodeOutputField from "./components/NodeOutputfield";
 import NodeStatus from "./components/NodeStatus";
 import { NodeIcon } from "./components/nodeIcon";
 
-export default function GenericNode({
+function GenericNodeComponent({
   data,
   selected,
 }: {
@@ -256,6 +256,7 @@ export default function GenericNode({
 
   return (
     <>
+      {/* ⚡ Bolt Optimization: GenericNode is memoized to prevent unnecessary re-renders during canvas operations like panning/zooming */}
       {memoizedNodeToolbarComponent}
       <div
         className={cn(
@@ -421,3 +422,5 @@ export default function GenericNode({
     </>
   );
 }
+
+export default memo(GenericNodeComponent);
