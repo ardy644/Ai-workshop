@@ -1,5 +1,5 @@
 import { cloneDeep } from "lodash";
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useUpdateNodeInternals } from "reactflow";
 import { default as IconComponent } from "../../../../components/genericIconComponent";
 import ShadTooltip from "../../../../components/shadTooltipComponent";
@@ -22,7 +22,9 @@ import OutputComponent from "../OutputComponent";
 import HandleRenderComponent from "../handleRenderComponent";
 import OutputModal from "../outputModal";
 
-export default function NodeOutputField({
+// ⚡ Bolt: Memoize component to prevent unnecessary re-renders during canvas interactions (e.g., panning, zooming).
+// Impact: Reduces React rendering overhead significantly when the canvas contains many nodes.
+function NodeOutputField({
   selected,
   data,
   title,
@@ -216,3 +218,5 @@ export default function NodeOutputField({
     </div>
   );
 }
+
+export default React.memo(NodeOutputField);
