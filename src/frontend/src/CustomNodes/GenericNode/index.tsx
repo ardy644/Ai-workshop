@@ -32,6 +32,7 @@ import NodeOutputField from "./components/NodeOutputfield";
 import NodeStatus from "./components/NodeStatus";
 import { NodeIcon } from "./components/nodeIcon";
 
+function GenericNode({
 function GenericNodeComponent({
   data,
   selected,
@@ -421,5 +422,6 @@ function GenericNodeComponent({
     </>
   );
 }
-
+// ⚡ Bolt: Memoize component to prevent unnecessary re-renders during canvas interactions (e.g., panning, zooming, selecting other nodes).
+// Impact: Reduces React rendering overhead significantly when the canvas contains many nodes.
 export default React.memo(GenericNodeComponent);
