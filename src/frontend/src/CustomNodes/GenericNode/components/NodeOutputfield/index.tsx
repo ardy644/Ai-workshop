@@ -1,5 +1,5 @@
 import { cloneDeep } from "lodash";
-import { useEffect, useRef } from "react";
+import { memo, useEffect, useRef } from "react";
 import { useUpdateNodeInternals } from "reactflow";
 import { default as IconComponent } from "../../../../components/genericIconComponent";
 import ShadTooltip from "../../../../components/shadTooltipComponent";
@@ -22,7 +22,7 @@ import OutputComponent from "../OutputComponent";
 import HandleRenderComponent from "../handleRenderComponent";
 import OutputModal from "../outputModal";
 
-export default function NodeOutputField({
+function NodeOutputField({
   selected,
   data,
   title,
@@ -216,3 +216,4 @@ export default function NodeOutputField({
     </div>
   );
 }
+export default memo(NodeOutputField);
