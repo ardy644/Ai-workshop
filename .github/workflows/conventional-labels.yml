@@ -5,6 +5,9 @@ on:
   pull_request_target:
     types: [opened, edited]
 
+permissions:
+  pull-requests: write
+
 jobs:
   validate-pr:
     name: Validate PR
