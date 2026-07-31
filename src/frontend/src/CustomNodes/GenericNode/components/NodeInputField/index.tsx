@@ -4,7 +4,7 @@ import {
   CustomParameterComponent,
   getCustomParameterTitle,
 } from "@/customization/components/custom-parameter";
-import { useEffect, useRef } from "react";
+import { memo, useEffect, useRef } from "react";
 import { default as IconComponent } from "../../../../components/genericIconComponent";
 import ShadTooltip from "../../../../components/shadTooltipComponent";
 import { LANGFLOW_SUPPORTED_TYPES } from "../../../../constants/constants";
@@ -17,7 +17,7 @@ import useHandleOnNewValue from "../../../hooks/use-handle-new-value";
 import NodeInputInfo from "../NodeInputInfo";
 import HandleRenderComponent from "../handleRenderComponent";
 
-export default function NodeInputField({
+function NodeInputField({
   id,
   data,
   tooltipTitle,
@@ -159,3 +159,5 @@ export default function NodeInputField({
     </div>
   );
 }
+
+export default memo(NodeInputField);
