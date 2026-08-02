@@ -6,7 +6,9 @@ import { cn } from "@/utils/utils";
 import { useEffect, useRef, useState } from "react";
 import Markdown from "react-markdown";
 
-export default function NodeDescription({
+import React from "react";
+
+function NodeDescription({
   description,
   selected,
   nodeId,
@@ -158,3 +160,7 @@ export default function NodeDescription({
     </div>
   );
 }
+
+// ⚡ Bolt: Memoize component to prevent unnecessary re-renders during canvas interactions.
+// Impact: Reduces React rendering overhead significantly when the canvas contains many nodes.
+export default React.memo(NodeDescription);
