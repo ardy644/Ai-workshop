@@ -4,7 +4,9 @@ import useFlowsManagerStore from "@/stores/flowsManagerStore";
 import useFlowStore from "@/stores/flowStore";
 import { useEffect, useState } from "react";
 
-export default function NodeName({
+import React from "react";
+
+function NodeName({
   display_name,
   selected,
   nodeId,
@@ -75,3 +77,7 @@ export default function NodeName({
     </div>
   );
 }
+
+// ⚡ Bolt: Memoize component to prevent unnecessary re-renders during canvas interactions.
+// Impact: Reduces React rendering overhead significantly when the canvas contains many nodes.
+export default React.memo(NodeName);
