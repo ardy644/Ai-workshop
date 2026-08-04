@@ -1,6 +1,6 @@
 import { useDarkStore } from "@/stores/darkStore";
 import useFlowStore from "@/stores/flowStore";
-import { useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Handle, Position } from "reactflow";
 import ShadTooltip from "../../../../components/shadTooltipComponent";
 import {
@@ -10,7 +10,7 @@ import {
 import { classNames, cn, groupByFamily } from "../../../../utils/utils";
 import HandleTooltipComponent from "../HandleTooltipComponent";
 
-export default function HandleRenderComponent({
+function HandleRenderComponent({
   left,
   nodes,
   tooltipTitle = "",
@@ -279,3 +279,7 @@ export default function HandleRenderComponent({
     </div>
   );
 }
+
+// ⚡ Bolt: Wrapped with React.memo to prevent unnecessary re-renders when parent GenericNode state changes.
+// Expected Impact: Reduces DOM reconciliation overhead during canvas interactions (panning/zooming).
+export default React.memo(HandleRenderComponent);
