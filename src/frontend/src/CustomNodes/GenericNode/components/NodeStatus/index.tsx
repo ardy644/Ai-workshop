@@ -181,4 +181,6 @@ function NodeStatus({
   );
 }
 
+// ⚡ Bolt: Wrapped with React.memo to prevent unnecessary re-renders when parent GenericNode state changes.
+// Expected Impact: Reduces DOM reconciliation overhead during canvas interactions (panning/zooming).
 export default React.memo(NodeStatus);
