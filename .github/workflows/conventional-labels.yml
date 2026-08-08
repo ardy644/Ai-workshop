@@ -22,6 +22,8 @@ jobs:
     name: Label PR
     runs-on: ubuntu-latest
     if: ${{ github.event.pull_request.user.type != 'Bot'}}
+    permissions:
+      pull-requests: write
     steps:
       - uses: bcoe/conventional-release-labels@v1
         with:
