@@ -1,7 +1,7 @@
+import { memo } from "react";
 import ShadTooltip from "../../../../components/shadTooltipComponent";
 import { outputComponentType } from "../../../../types/components";
 import { cn } from "../../../../utils/utils";
-import { memo } from "react";
 
 function OutputComponent({
   selected,
