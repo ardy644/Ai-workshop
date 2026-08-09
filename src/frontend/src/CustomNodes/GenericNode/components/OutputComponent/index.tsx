@@ -1,8 +1,9 @@
 import ShadTooltip from "../../../../components/shadTooltipComponent";
 import { outputComponentType } from "../../../../types/components";
 import { cn } from "../../../../utils/utils";
+import { memo } from "react";
 
-export default function OutputComponent({
+function OutputComponent({
   selected,
   types,
   frozen = false,
@@ -74,3 +75,5 @@ export default function OutputComponent({
   //   </div>
   // );
 }
+
+export default memo(OutputComponent);
