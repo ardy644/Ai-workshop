@@ -21,8 +21,6 @@ jobs:
     needs: validate-pr
     name: Label PR
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
     if: ${{ github.event.pull_request.user.type != 'Bot'}}
     steps:
       - uses: bcoe/conventional-release-labels@v1
