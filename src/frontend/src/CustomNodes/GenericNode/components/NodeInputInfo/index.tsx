@@ -1,4 +1,7 @@
-export default function NodeInputInfo({ info }: { info: string }) {
+import { memo } from "react";
+
+// Wrap with React.memo to prevent unnecessary re-renders during canvas interactions (panning/zooming)
+const NodeInputInfo = memo(function NodeInputInfo({ info }: { info: string }) {
   return (
     <div className="h-full w-full break-words">
       {info.split("\n").map((line, index) => (
@@ -8,4 +11,6 @@ export default function NodeInputInfo({ info }: { info: string }) {
       ))}
     </div>
   );
-}
+});
+
+export default NodeInputInfo;
