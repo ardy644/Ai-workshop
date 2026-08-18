@@ -1,6 +1,6 @@
 import { useDarkStore } from "@/stores/darkStore";
 import useFlowStore from "@/stores/flowStore";
-import { useMemo, useState } from "react";
+import { memo, useMemo, useState } from "react";
 import { Handle, Position } from "reactflow";
 import ShadTooltip from "../../../../components/shadTooltipComponent";
 import {
@@ -10,7 +10,7 @@ import {
 import { classNames, cn, groupByFamily } from "../../../../utils/utils";
 import HandleTooltipComponent from "../HandleTooltipComponent";
 
-export default function HandleRenderComponent({
+function HandleRenderComponent({
   left,
   nodes,
   tooltipTitle = "",
@@ -279,3 +279,5 @@ export default function HandleRenderComponent({
     </div>
   );
 }
+
+export default memo(HandleRenderComponent);
