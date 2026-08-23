@@ -1,6 +1,6 @@
 import { useDarkStore } from "@/stores/darkStore";
 import useFlowStore from "@/stores/flowStore";
-import { memo, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Handle, Position } from "reactflow";
 import ShadTooltip from "../../../../components/shadTooltipComponent";
 import {
@@ -10,14 +10,7 @@ import {
 import { classNames, cn, groupByFamily } from "../../../../utils/utils";
 import HandleTooltipComponent from "../HandleTooltipComponent";
 
-/*
- * ⚡ Bolt Performance Optimization:
- * We use React.memo to prevent unnecessary re-renders of this component during ReactFlow canvas
- * interactions (like panning and zooming). Since these sub-components are rendered heavily within
- * Custom Nodes, memoization significantly reduces DOM updates and CPU overhead.
- * Expected Impact: Reduces re-renders by ~50% during canvas interactions.
- */
-function HandleRenderComponent({
+export default function HandleRenderComponent({
   left,
   nodes,
   tooltipTitle = "",
@@ -286,5 +279,3 @@ function HandleRenderComponent({
     </div>
   );
 }
-
-export default memo(HandleRenderComponent);
