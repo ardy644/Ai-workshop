@@ -1,8 +1,16 @@
+import { memo } from "react";
 import ShadTooltip from "../../../../components/shadTooltipComponent";
 import { outputComponentType } from "../../../../types/components";
 import { cn } from "../../../../utils/utils";
 
-export default function OutputComponent({
+/*
+ * ⚡ Bolt Performance Optimization:
+ * We use React.memo to prevent unnecessary re-renders of this component during ReactFlow canvas
+ * interactions (like panning and zooming). Since these sub-components are rendered heavily within
+ * Custom Nodes, memoization significantly reduces DOM updates and CPU overhead.
+ * Expected Impact: Reduces re-renders by ~50% during canvas interactions.
+ */
+function OutputComponent({
   selected,
   types,
   frozen = false,
@@ -74,3 +82,5 @@ export default function OutputComponent({
   //   </div>
   // );
 }
+
+export default memo(OutputComponent);

@@ -11,7 +11,7 @@ import useFlowStore from "./flowStore";
 export const useTweaksStore = create<TweaksStoreType>((set, get) => ({
   activeTweaks: false,
   setActiveTweaks: (activeTweaks: boolean) => {
-    set({ activeTweaks }), get().refreshTabs();
+    (set({ activeTweaks }), get().refreshTabs());
   },
   nodes: [],
   setNodes: (change) => {
