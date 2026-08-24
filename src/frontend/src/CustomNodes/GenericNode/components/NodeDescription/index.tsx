@@ -3,10 +3,12 @@ import useFlowsManagerStore from "@/stores/flowsManagerStore";
 import useFlowStore from "@/stores/flowStore";
 import { handleKeyDown } from "@/utils/reactflowUtils";
 import { cn } from "@/utils/utils";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Markdown from "react-markdown";
 
-export default function NodeDescription({
+// ⚡ Bolt: Memoize component to prevent unnecessary re-renders during canvas interactions.
+// Impact: Reduces React rendering overhead significantly when the canvas contains many nodes.
+function NodeDescription({
   description,
   selected,
   nodeId,
@@ -158,3 +160,5 @@ export default function NodeDescription({
     </div>
   );
 }
+
+export default React.memo(NodeDescription);
