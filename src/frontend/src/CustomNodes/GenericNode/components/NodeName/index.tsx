@@ -2,9 +2,11 @@ import InputComponent from "@/components/inputComponent";
 import ShadTooltip from "@/components/shadTooltipComponent";
 import useFlowsManagerStore from "@/stores/flowsManagerStore";
 import useFlowStore from "@/stores/flowStore";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 
-export default function NodeName({
+// ⚡ Bolt Performance Optimization:
+// Wrapped in React.memo() to prevent unnecessary re-renders of this sub-component during canvas interactions (e.g., panning, zooming).
+export default memo(function NodeName({
   display_name,
   selected,
   nodeId,
@@ -74,4 +76,4 @@ export default function NodeName({
       </ShadTooltip>
     </div>
   );
-}
+});
