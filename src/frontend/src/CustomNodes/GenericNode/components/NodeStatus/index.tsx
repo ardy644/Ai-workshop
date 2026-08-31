@@ -17,11 +17,11 @@ import useFlowStore from "@/stores/flowStore";
 import { useShortcutsStore } from "@/stores/shortcuts";
 import { VertexBuildTypeAPI } from "@/types/api";
 import { classNames } from "@/utils/utils";
-import { memo, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import IconComponent from "../../../../components/genericIconComponent";
 
-function NodeStatus({
+export default function NodeStatus({
   nodeId,
   display_name,
   selected,
@@ -180,6 +180,3 @@ function NodeStatus({
     </>
   );
 }
-
-// Wrapped in React.memo to prevent unnecessary re-renders during canvas interactions
-export default memo(NodeStatus);
