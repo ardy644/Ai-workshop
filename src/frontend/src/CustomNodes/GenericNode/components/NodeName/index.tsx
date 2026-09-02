@@ -2,9 +2,9 @@ import InputComponent from "@/components/inputComponent";
 import ShadTooltip from "@/components/shadTooltipComponent";
 import useFlowsManagerStore from "@/stores/flowsManagerStore";
 import useFlowStore from "@/stores/flowStore";
-import { memo, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-function NodeName({
+export default function NodeName({
   display_name,
   selected,
   nodeId,
@@ -75,6 +75,3 @@ function NodeName({
     </div>
   );
 }
-
-// ⚡ Bolt: Memoize component to prevent unnecessary re-renders during canvas interactions
-export default memo(NodeName);
