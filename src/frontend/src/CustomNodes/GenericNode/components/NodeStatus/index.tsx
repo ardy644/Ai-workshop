@@ -17,11 +17,11 @@ import useFlowStore from "@/stores/flowStore";
 import { useShortcutsStore } from "@/stores/shortcuts";
 import { VertexBuildTypeAPI } from "@/types/api";
 import { classNames } from "@/utils/utils";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import IconComponent from "../../../../components/genericIconComponent";
 
-export default function NodeStatus({
+function NodeStatus({
   nodeId,
   display_name,
   selected,
@@ -180,3 +180,5 @@ export default function NodeStatus({
     </>
   );
 }
+
+export default React.memo(NodeStatus);
