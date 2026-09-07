@@ -181,4 +181,6 @@ function NodeStatus({
   );
 }
 
+// ⚡ Bolt: Memoize component to prevent unnecessary re-renders during canvas interactions.
+// Impact: Reduces React rendering overhead significantly when the canvas contains many nodes.
 export default memo(NodeStatus);
