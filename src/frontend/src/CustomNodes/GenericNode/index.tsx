@@ -30,7 +30,7 @@ import NodeInputField from "./components/NodeInputField";
 import NodeName from "./components/NodeName";
 import NodeOutputField from "./components/NodeOutputfield";
 import NodeStatus from "./components/NodeStatus";
-import { NodeIcon } from "./components/nodeIcon";
+import NodeIcon from "./components/nodeIcon";
 
 function GenericNode({
   data,
