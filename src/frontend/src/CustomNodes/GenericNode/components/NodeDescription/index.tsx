@@ -159,4 +159,5 @@ function NodeDescription({
   );
 }
 
+// ⚡ Bolt: Memoize component to prevent unnecessary re-renders during canvas interactions.
 export default memo(NodeDescription);

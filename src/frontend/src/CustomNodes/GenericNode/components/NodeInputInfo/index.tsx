@@ -11,4 +11,5 @@ function NodeInputInfo({ info }: { info: string }) {
   );
 }
 
+// ⚡ Bolt: Memoize component to prevent unnecessary re-renders during canvas interactions.
 export default memo(NodeInputInfo);
