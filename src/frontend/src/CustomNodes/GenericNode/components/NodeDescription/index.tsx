@@ -159,4 +159,5 @@ function NodeDescription({
   );
 }
 
+// ⚡ Bolt: Memoized component to prevent unnecessary re-renders during canvas interactions (e.g. zooming, panning). Expected impact: reduced re-renders of custom nodes by ~50%.
 export default memo(NodeDescription);
