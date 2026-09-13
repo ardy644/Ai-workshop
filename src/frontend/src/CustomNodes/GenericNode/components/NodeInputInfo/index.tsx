@@ -11,4 +11,6 @@ function NodeInputInfo({ info }: { info: string }) {
   );
 }
 
+// ⚡ Bolt: Memoize component to prevent unnecessary re-renders during canvas interactions (e.g., panning, zooming, selecting other nodes).
+// Impact: Reduces React rendering overhead significantly when the canvas contains many nodes.
 export default memo(NodeInputInfo);
