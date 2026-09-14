@@ -1,10 +1,14 @@
+// ⚡ Bolt Optimization: Wrapped with React.memo() to prevent unnecessary re-renders
+// ⚡ during canvas interactions (panning/zooming) when props have not changed.
+// 📊 Impact: Reduces CPU usage and improves canvas smoothness by skipping redundant renders.
+
 import InputComponent from "@/components/inputComponent";
 import ShadTooltip from "@/components/shadTooltipComponent";
 import useFlowsManagerStore from "@/stores/flowsManagerStore";
 import useFlowStore from "@/stores/flowStore";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 
-export default function NodeName({
+function NodeName({
   display_name,
   selected,
   nodeId,
@@ -75,3 +79,5 @@ export default function NodeName({
     </div>
   );
 }
+
+export default memo(NodeName);
