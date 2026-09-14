@@ -1,12 +1,16 @@
+// ⚡ Bolt Optimization: Wrapped with React.memo() to prevent unnecessary re-renders
+// ⚡ during canvas interactions (panning/zooming) when props have not changed.
+// 📊 Impact: Reduces CPU usage and improves canvas smoothness by skipping redundant renders.
+
 import { Textarea } from "@/components/ui/textarea";
 import useFlowsManagerStore from "@/stores/flowsManagerStore";
 import useFlowStore from "@/stores/flowStore";
 import { handleKeyDown } from "@/utils/reactflowUtils";
 import { cn } from "@/utils/utils";
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import Markdown from "react-markdown";
 
-export default function NodeDescription({
+function NodeDescription({
   description,
   selected,
   nodeId,
@@ -158,3 +162,5 @@ export default function NodeDescription({
     </div>
   );
 }
+
+export default memo(NodeDescription);
