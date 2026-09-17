@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useDarkStore } from "@/stores/darkStore";
 import useFlowStore from "@/stores/flowStore";
 import { useMemo, useState } from "react";
@@ -10,7 +11,7 @@ import {
 import { classNames, cn, groupByFamily } from "../../../../utils/utils";
 import HandleTooltipComponent from "../HandleTooltipComponent";
 
-export default function HandleRenderComponent({
+function HandleRenderComponent({
   left,
   nodes,
   tooltipTitle = "",
@@ -279,3 +280,6 @@ export default function HandleRenderComponent({
     </div>
   );
 }
+
+// ⚡ Bolt: Memoize component to prevent unnecessary re-renders during canvas interactions (e.g., panning, zooming)
+export default memo(HandleRenderComponent);
