@@ -2,7 +2,7 @@ import InputComponent from "@/components/inputComponent";
 import ShadTooltip from "@/components/shadTooltipComponent";
 import useFlowsManagerStore from "@/stores/flowsManagerStore";
 import useFlowStore from "@/stores/flowStore";
-import { useEffect, useState , memo} from "react";
+import { memo, useEffect, useState } from "react";
 
 function NodeName({
   display_name,
