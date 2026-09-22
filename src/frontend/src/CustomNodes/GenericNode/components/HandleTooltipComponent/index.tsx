@@ -65,7 +65,6 @@ function HandleTooltipComponent({
   );
 }
 
-
 // ⚡ Bolt: Memoized HandleTooltipComponent to prevent unnecessary re-renders during canvas interactions (like panning/zooming).
 // Expected Impact: Reduces ReactFlow rendering overhead for heavily used sub-components.
 export default memo(HandleTooltipComponent);
