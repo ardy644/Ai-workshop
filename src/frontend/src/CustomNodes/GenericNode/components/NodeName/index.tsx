@@ -76,4 +76,5 @@ function NodeName({
   );
 }
 
+// Wrapped in React.memo() to prevent cascading re-renders during ReactFlow canvas interactions (panning/zooming)
 export default memo(NodeName);
