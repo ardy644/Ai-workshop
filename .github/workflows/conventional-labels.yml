@@ -18,6 +18,10 @@ jobs:
           issue: false
 
   label:
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
     needs: validate-pr
     name: Label PR
     runs-on: ubuntu-latest
