@@ -1,9 +1,10 @@
 import { useTypesStore } from "@/stores/typesStore";
 import { nodeColors, nodeIconsLucide } from "@/utils/styleUtils";
 import emojiRegex from "emoji-regex";
+import { memo } from "react";
 import IconComponent from "../../../../components/genericIconComponent";
 
-export function NodeIcon({
+export const NodeIcon = memo(function NodeIcon({
   icon,
   dataType,
   showNode,
@@ -31,4 +32,4 @@ export function NodeIcon({
       iconColor={iconColor}
     />
   );
-}
+});
