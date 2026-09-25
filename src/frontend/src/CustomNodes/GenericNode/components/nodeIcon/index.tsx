@@ -4,6 +4,10 @@ import emojiRegex from "emoji-regex";
 import { memo } from "react";
 import IconComponent from "../../../../components/genericIconComponent";
 
+// ⚡ Bolt Performance Optimization
+// What: Wrapped component in React.memo()
+// Why: ReactFlow passes state downwards frequently. Unmemoized child components cause cascading re-renders during canvas interactions (panning/zooming).
+// Impact: Reduces unnecessary re-renders of generic node components during interactions.
 export const NodeIcon = memo(function NodeIcon({
   icon,
   dataType,
