@@ -2,9 +2,9 @@ import InputComponent from "@/components/inputComponent";
 import ShadTooltip from "@/components/shadTooltipComponent";
 import useFlowsManagerStore from "@/stores/flowsManagerStore";
 import useFlowStore from "@/stores/flowStore";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 
-export default function NodeName({
+function NodeName({
   display_name,
   selected,
   nodeId,
@@ -75,3 +75,9 @@ export default function NodeName({
     </div>
   );
 }
+
+// ⚡ Bolt Performance Optimization
+// What: Wrapped component in React.memo()
+// Why: ReactFlow passes state downwards frequently. Unmemoized child components cause cascading re-renders during canvas interactions (panning/zooming).
+// Impact: Reduces unnecessary re-renders of generic node components during interactions.
+export default memo(NodeName);

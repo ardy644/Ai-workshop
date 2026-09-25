@@ -1,6 +1,7 @@
 import { convertTestName } from "@/components/storeCardComponent/utils/convert-test-name";
+import { memo } from "react";
 
-export default function HandleTooltipComponent({
+function HandleTooltipComponent({
   isInput,
   tooltipTitle,
   colors,
@@ -63,3 +64,9 @@ export default function HandleTooltipComponent({
     </div>
   );
 }
+
+// ⚡ Bolt Performance Optimization
+// What: Wrapped component in React.memo()
+// Why: ReactFlow passes state downwards frequently. Unmemoized child components cause cascading re-renders during canvas interactions (panning/zooming).
+// Impact: Reduces unnecessary re-renders of generic node components during interactions.
+export default memo(HandleTooltipComponent);
