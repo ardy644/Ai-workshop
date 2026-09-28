@@ -76,4 +76,5 @@ function NodeName({
   );
 }
 
+// ⚡ Bolt: Memoize sub-component to prevent unnecessary re-renders during canvas interactions
 export default memo(NodeName);
