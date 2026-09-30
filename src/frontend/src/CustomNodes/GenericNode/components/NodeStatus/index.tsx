@@ -181,4 +181,6 @@ function NodeStatus({
   );
 }
 
+// Added memo to prevent re-renders when parent Custom Nodes re-render during canvas interactions (e.g. panning/zooming)
+
 export default memo(NodeStatus);
