@@ -1,8 +1,9 @@
+import { memo } from "react";
 import ShadTooltip from "../../../../components/shadTooltipComponent";
 import { outputComponentType } from "../../../../types/components";
 import { cn } from "../../../../utils/utils";
 
-export default function OutputComponent({
+function OutputComponent({
   selected,
   types,
   frozen = false,
@@ -74,3 +75,6 @@ export default function OutputComponent({
   //   </div>
   // );
 }
+
+// ⚡ Bolt: Memoize OutputComponent to prevent unnecessary re-renders during canvas interactions
+export default memo(OutputComponent);
