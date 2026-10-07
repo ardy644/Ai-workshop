@@ -3,7 +3,7 @@
 name: Label PRs with Conventional Commits
 on:
   pull_request_target:
-    types: [opened, edited]
+    types: [opened, edited, synchronize]
 
 jobs:
   validate-pr:
@@ -20,6 +20,10 @@ jobs:
   label:
     needs: validate-pr
     name: Label PR
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
     runs-on: ubuntu-latest
     if: ${{ github.event.pull_request.user.type != 'Bot'}}
     steps:
