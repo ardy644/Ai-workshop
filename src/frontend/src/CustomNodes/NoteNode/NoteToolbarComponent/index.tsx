@@ -20,10 +20,10 @@ import { useShortcutsStore } from "@/stores/shortcuts";
 import { NodeDataType, noteDataType } from "@/types/flow";
 import { classNames, cn, openInNewTab } from "@/utils/utils";
 import { cloneDeep, set, take } from "lodash";
-import { useState } from "react";
+import { memo, useState } from "react";
 import IconComponent from "../../../components/genericIconComponent";
 
-export default function NoteToolbarComponent({
+function NoteToolbarComponent({
   data,
   bgColor,
 }: {
@@ -216,3 +216,7 @@ export default function NoteToolbarComponent({
     </>
   );
 }
+
+// ⚡ Bolt: Wrapped component with React.memo() to prevent unnecessary re-renders during ReactFlow canvas interactions (panning/zooming).
+// Expected impact: Significant reduction in render cycles for nodes heavily utilizing this sub-component.
+export default memo(NoteToolbarComponent);

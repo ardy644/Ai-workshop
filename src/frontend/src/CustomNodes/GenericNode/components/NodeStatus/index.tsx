@@ -17,11 +17,11 @@ import useFlowStore from "@/stores/flowStore";
 import { useShortcutsStore } from "@/stores/shortcuts";
 import { VertexBuildTypeAPI } from "@/types/api";
 import { classNames } from "@/utils/utils";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import IconComponent from "../../../../components/genericIconComponent";
 
-export default function NodeStatus({
+function NodeStatus({
   nodeId,
   display_name,
   selected,
@@ -180,3 +180,7 @@ export default function NodeStatus({
     </>
   );
 }
+
+// ⚡ Bolt: Wrapped component with React.memo() to prevent unnecessary re-renders during ReactFlow canvas interactions (panning/zooming).
+// Expected impact: Significant reduction in render cycles for nodes heavily utilizing this sub-component.
+export default memo(NodeStatus);

@@ -1,8 +1,9 @@
+import { memo } from "react";
 import ShadTooltip from "../../../../components/shadTooltipComponent";
 import { outputComponentType } from "../../../../types/components";
 import { cn } from "../../../../utils/utils";
 
-export default function OutputComponent({
+function OutputComponent({
   selected,
   types,
   frozen = false,
@@ -74,3 +75,7 @@ export default function OutputComponent({
   //   </div>
   // );
 }
+
+// ⚡ Bolt: Wrapped component with React.memo() to prevent unnecessary re-renders during ReactFlow canvas interactions (panning/zooming).
+// Expected impact: Significant reduction in render cycles for nodes heavily utilizing this sub-component.
+export default memo(OutputComponent);
