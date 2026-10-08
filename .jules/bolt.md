@@ -4,3 +4,6 @@
 ## 2024-08-01 - [ReactFlow Re-renders Sub-components Bottleneck]
 **Learning:** ReactFlow's re-rendering bottleneck not only impacts the main custom nodes but also heavily hits internal child sub-components (like NodeInputField and NodeOutputfield) which are rendered repeatedly.
 **Action:** Ensure that internal, heavily-used sub-components within custom ReactFlow nodes are also wrapped with `React.memo()` to prevent cascading re-renders during canvas interactions.
+## 2024-10-08 - [ReactFlow Remaining Sub-components Bottleneck]
+**Learning:** Found remaining ReactFlow node subcomponents (`NodeDescription`, `NodeName`, `NodeStatus`, `NodeInputInfo`, `HandleTooltipComponent`, `OutputComponent`, `NoteToolbarComponent`) that were missed in previous memoization passes. These unmemoized components still cause localized re-render spikes during rapid canvas interactions.
+**Action:** When adding or auditing ReactFlow custom nodes, comprehensively verify that *all* purely presentational or stable sub-components rendered within the node tree are wrapped in `React.memo()`.

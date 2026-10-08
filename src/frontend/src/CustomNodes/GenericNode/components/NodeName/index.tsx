@@ -2,9 +2,9 @@ import InputComponent from "@/components/inputComponent";
 import ShadTooltip from "@/components/shadTooltipComponent";
 import useFlowsManagerStore from "@/stores/flowsManagerStore";
 import useFlowStore from "@/stores/flowStore";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 
-export default function NodeName({
+function NodeName({
   display_name,
   selected,
   nodeId,
@@ -75,3 +75,7 @@ export default function NodeName({
     </div>
   );
 }
+
+// ⚡ Bolt: Wrapped component with React.memo() to prevent unnecessary re-renders during ReactFlow canvas interactions (panning/zooming).
+// Expected impact: Significant reduction in render cycles for nodes heavily utilizing this sub-component.
+export default memo(NodeName);
