@@ -1,6 +1,6 @@
 import { useDarkStore } from "@/stores/darkStore";
 import useFlowStore from "@/stores/flowStore";
-import { useMemo, useState } from "react";
+import { memo, useMemo, useState } from "react";
 import { Handle, Position } from "reactflow";
 import ShadTooltip from "../../../../components/shadTooltipComponent";
 import {
@@ -10,7 +10,7 @@ import {
 import { classNames, cn, groupByFamily } from "../../../../utils/utils";
 import HandleTooltipComponent from "../HandleTooltipComponent";
 
-export default function HandleRenderComponent({
+function HandleRenderComponentBase({
   left,
   nodes,
   tooltipTitle = "",
@@ -279,3 +279,9 @@ export default function HandleRenderComponent({
     </div>
   );
 }
+
+/*
+ * ⚡ Bolt: Memoizing GenericNode sub-components to prevent
+ * unnecessary cascading re-renders during canvas interactions.
+ */
+export default memo(HandleRenderComponentBase);

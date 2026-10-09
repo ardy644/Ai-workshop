@@ -1,6 +1,7 @@
 import { convertTestName } from "@/components/storeCardComponent/utils/convert-test-name";
+import { memo } from "react";
 
-export default function HandleTooltipComponent({
+function HandleTooltipComponentBase({
   isInput,
   tooltipTitle,
   colors,
@@ -63,3 +64,9 @@ export default function HandleTooltipComponent({
     </div>
   );
 }
+
+/*
+ * ⚡ Bolt: Memoizing GenericNode sub-components to prevent
+ * unnecessary cascading re-renders during canvas interactions.
+ */
+export default memo(HandleTooltipComponentBase);
