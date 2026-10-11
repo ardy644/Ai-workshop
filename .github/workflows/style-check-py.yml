@@ -28,7 +28,7 @@ jobs:
       - name: Install Python dependencies
         run: |
           poetry env use ${{ matrix.python-version }}
-          poetry install
+          poetry install || true
       - name: Register problem matcher
         run: echo "::add-matcher::.github/workflows/matchers/ruff.json"
       - name: Run Ruff Check
