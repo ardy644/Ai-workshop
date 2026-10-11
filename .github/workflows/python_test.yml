@@ -55,7 +55,6 @@ jobs:
       - name: Install Python dependencies
         run: |
           poetry env use ${{ matrix.python-version }}
-          poetry lock --no-update
           poetry install
       - name: Run unit tests
         uses: nick-fields/retry@v3
@@ -82,7 +81,6 @@ jobs:
       - name: Install Python dependencies
         run: |
           poetry env use ${{ matrix.python-version }}
-          poetry lock --no-update
           poetry install
       - name: Run integration tests
         run: make integration_tests_no_api_keys
