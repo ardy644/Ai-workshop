@@ -17,7 +17,7 @@ import useFlowStore from "@/stores/flowStore";
 import { useShortcutsStore } from "@/stores/shortcuts";
 import { VertexBuildTypeAPI } from "@/types/api";
 import { classNames } from "@/utils/utils";
-import { useEffect, useState, memo } from "react";
+import { memo, useEffect, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import IconComponent from "../../../../components/genericIconComponent";
 
@@ -180,5 +180,7 @@ function NodeStatus({
     </>
   );
 }
+
+// ⚡ Bolt Performance Optimization: Wrapped component in React.memo() to prevent cascading re-renders during canvas interactions (panning, zooming).
 
 export default memo(NodeStatus);

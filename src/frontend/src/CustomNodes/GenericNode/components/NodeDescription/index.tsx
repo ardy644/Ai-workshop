@@ -3,7 +3,7 @@ import useFlowsManagerStore from "@/stores/flowsManagerStore";
 import useFlowStore from "@/stores/flowStore";
 import { handleKeyDown } from "@/utils/reactflowUtils";
 import { cn } from "@/utils/utils";
-import { useEffect, useRef, useState, memo } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import Markdown from "react-markdown";
 
 function NodeDescription({
@@ -158,5 +158,7 @@ function NodeDescription({
     </div>
   );
 }
+
+// ⚡ Bolt Performance Optimization: Wrapped component in React.memo() to prevent cascading re-renders during canvas interactions (panning, zooming).
 
 export default memo(NodeDescription);

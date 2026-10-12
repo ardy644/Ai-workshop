@@ -11,4 +11,6 @@ function NodeInputInfo({ info }: { info: string }) {
   );
 }
 
+// ⚡ Bolt Performance Optimization: Wrapped component in React.memo() to prevent cascading re-renders during canvas interactions (panning, zooming).
+
 export default memo(NodeInputInfo);
