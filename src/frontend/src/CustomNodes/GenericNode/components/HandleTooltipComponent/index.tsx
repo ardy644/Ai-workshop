@@ -1,6 +1,7 @@
 import { convertTestName } from "@/components/storeCardComponent/utils/convert-test-name";
+import { memo } from "react";
 
-export default function HandleTooltipComponent({
+function HandleTooltipComponentBase({
   isInput,
   tooltipTitle,
   colors,
@@ -63,3 +64,9 @@ export default function HandleTooltipComponent({
     </div>
   );
 }
+
+// ⚡ Bolt Performance Optimization
+// What: Wrapped ReactFlow sub-component with React.memo()
+// Why: ReactFlow passes state changes to all nodes. Un-memoized sub-components cause extreme overhead during canvas interactions.
+// Impact: Drastically reduces unnecessary re-renders of Generic Node components when panning or zooming.
+export default memo(HandleTooltipComponentBase);

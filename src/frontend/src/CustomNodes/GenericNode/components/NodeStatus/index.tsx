@@ -17,11 +17,11 @@ import useFlowStore from "@/stores/flowStore";
 import { useShortcutsStore } from "@/stores/shortcuts";
 import { VertexBuildTypeAPI } from "@/types/api";
 import { classNames } from "@/utils/utils";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import IconComponent from "../../../../components/genericIconComponent";
 
-export default function NodeStatus({
+function NodeStatusBase({
   nodeId,
   display_name,
   selected,
@@ -180,3 +180,9 @@ export default function NodeStatus({
     </>
   );
 }
+
+// ⚡ Bolt Performance Optimization
+// What: Wrapped ReactFlow sub-component with React.memo()
+// Why: ReactFlow passes state changes to all nodes. Un-memoized sub-components cause extreme overhead during canvas interactions.
+// Impact: Drastically reduces unnecessary re-renders of Generic Node components when panning or zooming.
+export default memo(NodeStatusBase);

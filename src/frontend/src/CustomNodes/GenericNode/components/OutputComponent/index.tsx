@@ -1,8 +1,9 @@
+import { memo } from "react";
 import ShadTooltip from "../../../../components/shadTooltipComponent";
 import { outputComponentType } from "../../../../types/components";
 import { cn } from "../../../../utils/utils";
 
-export default function OutputComponent({
+function OutputComponentBase({
   selected,
   types,
   frozen = false,
@@ -74,3 +75,9 @@ export default function OutputComponent({
   //   </div>
   // );
 }
+
+// ⚡ Bolt Performance Optimization
+// What: Wrapped ReactFlow sub-component with React.memo()
+// Why: ReactFlow passes state changes to all nodes. Un-memoized sub-components cause extreme overhead during canvas interactions.
+// Impact: Drastically reduces unnecessary re-renders of Generic Node components when panning or zooming.
+export default memo(OutputComponentBase);
