@@ -3,10 +3,10 @@ import useFlowsManagerStore from "@/stores/flowsManagerStore";
 import useFlowStore from "@/stores/flowStore";
 import { handleKeyDown } from "@/utils/reactflowUtils";
 import { cn } from "@/utils/utils";
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import Markdown from "react-markdown";
 
-export default function NodeDescription({
+function NodeDescriptionBase({
   description,
   selected,
   nodeId,
@@ -158,3 +158,9 @@ export default function NodeDescription({
     </div>
   );
 }
+
+// ⚡ Bolt Performance Optimization
+// What: Wrapped ReactFlow sub-component with React.memo()
+// Why: ReactFlow passes state changes to all nodes. Un-memoized sub-components cause extreme overhead during canvas interactions.
+// Impact: Drastically reduces unnecessary re-renders of Generic Node components when panning or zooming.
+export default memo(NodeDescriptionBase);
