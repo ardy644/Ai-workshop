@@ -159,4 +159,6 @@ function NodeDescriptionBase({
   );
 }
 
+// Bolt Optimization: Wrap component in React.memo to prevent unnecessary re-renders
+// during ReactFlow canvas interactions (panning/zooming) when props are stable.
 export default memo(NodeDescriptionBase);
