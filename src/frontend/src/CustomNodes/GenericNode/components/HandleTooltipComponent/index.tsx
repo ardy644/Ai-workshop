@@ -1,6 +1,7 @@
 import { convertTestName } from "@/components/storeCardComponent/utils/convert-test-name";
+import { memo } from "react";
 
-export default function HandleTooltipComponent({
+function HandleTooltipComponentBase({
   isInput,
   tooltipTitle,
   colors,
@@ -63,3 +64,7 @@ export default function HandleTooltipComponent({
     </div>
   );
 }
+
+// Bolt Optimization: Wrap component in React.memo to prevent unnecessary re-renders
+// during ReactFlow canvas interactions (panning/zooming) when props are stable.
+export default memo(HandleTooltipComponentBase);
