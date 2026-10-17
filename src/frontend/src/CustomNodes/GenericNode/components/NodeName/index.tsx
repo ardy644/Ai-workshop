@@ -2,9 +2,10 @@ import InputComponent from "@/components/inputComponent";
 import ShadTooltip from "@/components/shadTooltipComponent";
 import useFlowsManagerStore from "@/stores/flowsManagerStore";
 import useFlowStore from "@/stores/flowStore";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 
-export default function NodeName({
+// Performance: memoizing NodeName to prevent unnecessary re-renders during canvas interactions
+function NodeName({
   display_name,
   selected,
   nodeId,
@@ -75,3 +76,5 @@ export default function NodeName({
     </div>
   );
 }
+
+export default memo(NodeName);
