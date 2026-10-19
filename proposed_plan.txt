@@ -1,0 +1,18 @@
+1. **Run all relevant tests**
+   - Execute tests and type checking to ensure codebase remains stable:
+     - `cd src/frontend && pnpm run type-check`
+     - `cd src/frontend && pnpm run check-format`
+     - `make unit_tests`
+
+2. **Complete Pre Commit Steps**
+   - Complete pre-commit steps to ensure proper testing, verification, review, and reflection are done.
+
+3. **Submit PR**
+   - Submit the PR with the following:
+     - Branch: `bolt-memoize-custom-nodes`
+     - Title: `perf: Bolt: memoize ReactFlow sub-components to prevent re-renders`
+     - Description:
+       - 💡 What: Wrapped multiple heavily used child sub-components within custom ReactFlow nodes (`NodeName`, `NodeDescription`, `NodeStatus`, `NodeInputInfo`, `OutputComponent`, `HandleTooltipComponent`, `HandleRenderComponent`, `NodeIcon`, `OutputModal`) with `React.memo()`. Note that `GenericNode` and `NoteNode` were already memoized, and `NodeInputField` and `NodeOutputfield` were also already memoized. Added inline comments explaining the optimization.
+       - 🎯 Why: To fix extreme overhead when rendering complex UIs. Langflow's custom nodes re-rendered heavily on every canvas interaction (panning, zooming) because they or their subcomponents were not memoized. ReactFlow explicitly passes state changes to all nodes, meaning un-memoized custom nodes cause cascading re-renders.
+       - 📊 Impact: Significantly reduces React rendering overhead when the canvas contains many nodes by ensuring shallow prop comparison.
+       - 🔬 Measurement: Verify by interacting with a complex flow (panning, zooming) and profiling the component renders in React DevTools.

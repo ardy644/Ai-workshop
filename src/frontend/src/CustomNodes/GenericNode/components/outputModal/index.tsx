@@ -1,14 +1,9 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useState } from "react";
+import { memo, useState } from "react";
 import BaseModal from "../../../../modals/baseModal";
 import SwitchOutputView from "./components/switchOutputView";
 
-export default function OutputModal({
-  nodeId,
-  outputName,
-  children,
-  disabled,
-}): JSX.Element {
+function OutputModal({ nodeId, outputName, children, disabled }): JSX.Element {
   const [activeTab, setActiveTab] = useState<"Outputs" | "Logs">("Outputs");
   return (
     <BaseModal disable={disabled} size="large">
@@ -41,3 +36,7 @@ export default function OutputModal({
     </BaseModal>
   );
 }
+
+// ⚡ Bolt: Memoize component to prevent unnecessary re-renders during canvas interactions (e.g., panning, zooming, selecting other nodes).
+// Impact: Reduces React rendering overhead significantly when the canvas contains many nodes.
+export default memo(OutputModal);
