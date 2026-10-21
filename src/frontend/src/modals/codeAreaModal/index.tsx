@@ -173,12 +173,10 @@ export default function CodeAreaModal({
         if (code === value) {
           setOpen(false);
         } else {
-          if (
-            !(
-              codeRef.current?.editor.completer.popup &&
-              codeRef.current?.editor.completer.popup.isOpen
-            )
-          ) {
+          if (!(
+            codeRef.current?.editor.completer.popup &&
+            codeRef.current?.editor.completer.popup.isOpen
+          )) {
             setOpenConfirmation(true);
           }
         }
