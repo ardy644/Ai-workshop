@@ -160,3 +160,6 @@ function NodeDescription({
 }
 
 export default memo(NodeDescription);
+// ⚡ Bolt: Wrapped NodeDescription in React.memo() to prevent unnecessary re-renders
+// during canvas interactions.
+// Impact: Reduces React rendering overhead when node description props remain shallowly equal.

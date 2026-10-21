@@ -12,3 +12,6 @@ function NodeInputInfo({ info }: { info: string }) {
 }
 
 export default memo(NodeInputInfo);
+// ⚡ Bolt: Wrapped NodeInputInfo in React.memo() to prevent unnecessary re-renders
+// during canvas interactions.
+// Impact: Reduces React rendering overhead when input info props remain shallowly equal.
