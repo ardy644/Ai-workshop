@@ -91,7 +91,9 @@ export type FlowStoreType = {
   flowState: FlowState | undefined;
   setFlowState: (
     state:
-      FlowState | undefined | ((oldState: FlowState | undefined) => FlowState),
+      | FlowState
+      | undefined
+      | ((oldState: FlowState | undefined) => FlowState),
   ) => void;
   nodes: Node[];
   edges: Edge[];

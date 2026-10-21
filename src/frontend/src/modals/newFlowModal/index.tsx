@@ -27,9 +27,11 @@ export default function NewFlowModal({
             ) && (
               <UndrawCardComponent
                 key={0}
-                flow={examples.find(
-                  (e) => e.name == "Basic Prompting (Hello, World)",
-                )!}
+                flow={
+                  examples.find(
+                    (e) => e.name == "Basic Prompting (Hello, World)",
+                  )!
+                }
               />
             )}
             {examples.find((e) => e.name == "Memory Chatbot") && (
