@@ -145,7 +145,8 @@ const useFlowStore = create<FlowStoreType>((set, get) => ({
       //update data results
       else {
         newFlowPool[nodeId][index].data.message = data as
-          ChatOutputType | ChatInputType;
+          | ChatOutputType
+          | ChatInputType;
       }
     }
     get().setFlowPool(newFlowPool);

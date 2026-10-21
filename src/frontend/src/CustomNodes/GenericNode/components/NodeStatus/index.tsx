@@ -182,6 +182,4 @@ function NodeStatus({
 }
 
 export default memo(NodeStatus);
-// ⚡ Bolt: Wrapped NodeStatus in React.memo() to prevent unnecessary re-renders
-// during canvas interactions.
-// Impact: Reduces React rendering overhead when node status props remain shallowly equal.
+// ⚡ Bolt: Wrapped NodeStatus in React.memo() to prevent unnecessary re-renders during canvas interactions.

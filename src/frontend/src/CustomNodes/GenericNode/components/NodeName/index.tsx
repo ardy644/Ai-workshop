@@ -77,6 +77,4 @@ function NodeName({
 }
 
 export default memo(NodeName);
-// ⚡ Bolt: Wrapped NodeName in React.memo() to prevent unnecessary re-renders
-// during canvas interactions.
-// Impact: Reduces React rendering overhead when node name props remain shallowly equal.
+// ⚡ Bolt: Wrapped NodeName in React.memo() to prevent unnecessary re-renders during canvas interactions.
