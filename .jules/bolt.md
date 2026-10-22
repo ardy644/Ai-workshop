@@ -4,3 +4,6 @@
 ## 2024-08-01 - [ReactFlow Re-renders Sub-components Bottleneck]
 **Learning:** ReactFlow's re-rendering bottleneck not only impacts the main custom nodes but also heavily hits internal child sub-components (like NodeInputField and NodeOutputfield) which are rendered repeatedly.
 **Action:** Ensure that internal, heavily-used sub-components within custom ReactFlow nodes are also wrapped with `React.memo()` to prevent cascading re-renders during canvas interactions.
+## 2025-01-20 - [ReactFlow GenericNode Sub-components Missing Memoization]
+**Learning:** Some internal child sub-components like NodeDescription, NodeName, NodeStatus, and NodeInputInfo were not memoized, causing unnecessary re-renders in GenericNode, exacerbating ReactFlow canvas interaction latency.
+**Action:** Ensure all display and status sub-components inside GenericNode are wrapped with `React.memo()` to prevent unnecessary re-renders during ReactFlow state changes.
