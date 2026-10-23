@@ -65,4 +65,5 @@ function HandleTooltipComponentBase({
   );
 }
 
+// Memoized to prevent unnecessary re-renders during React Flow node updates (e.g., dragging, selection)
 export default memo(HandleTooltipComponentBase);
