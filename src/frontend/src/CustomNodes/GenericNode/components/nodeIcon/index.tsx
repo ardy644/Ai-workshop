@@ -1,9 +1,10 @@
 import { useTypesStore } from "@/stores/typesStore";
 import { nodeColors, nodeIconsLucide } from "@/utils/styleUtils";
 import emojiRegex from "emoji-regex";
+import { memo } from "react";
 import IconComponent from "../../../../components/genericIconComponent";
 
-export function NodeIcon({
+function NodeIconBase({
   icon,
   dataType,
   showNode,
@@ -32,3 +33,7 @@ export function NodeIcon({
     />
   );
 }
+
+// ⚡ Bolt: Memoize component to prevent unnecessary re-renders during canvas interactions (e.g., panning, zooming).
+// Impact: Reduces React rendering overhead significantly when the canvas contains many nodes.
+export const NodeIcon = memo(NodeIconBase);
