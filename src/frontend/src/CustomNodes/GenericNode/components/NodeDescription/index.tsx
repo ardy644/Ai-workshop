@@ -3,10 +3,10 @@ import useFlowsManagerStore from "@/stores/flowsManagerStore";
 import useFlowStore from "@/stores/flowStore";
 import { handleKeyDown } from "@/utils/reactflowUtils";
 import { cn } from "@/utils/utils";
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import Markdown from "react-markdown";
 
-export default function NodeDescription({
+function NodeDescription({
   description,
   selected,
   nodeId,
@@ -158,3 +158,9 @@ export default function NodeDescription({
     </div>
   );
 }
+
+/* Bolt Performance Optimization:
+ * Added React.memo to prevent unnecessary re-renders of the NodeDescription
+ * sub-component during ReactFlow canvas interactions (panning/zooming).
+ */
+export default memo(NodeDescription);
