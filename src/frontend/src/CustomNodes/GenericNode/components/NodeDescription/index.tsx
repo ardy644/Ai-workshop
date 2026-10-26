@@ -159,4 +159,6 @@ function NodeDescriptionBase({
   );
 }
 
+
+/* Bolt: Memoized NodeDescription to prevent unnecessary re-renders when parent GenericNode state changes */
 export default memo(NodeDescriptionBase);

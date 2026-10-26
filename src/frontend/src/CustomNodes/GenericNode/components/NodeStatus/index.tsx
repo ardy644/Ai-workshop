@@ -181,4 +181,6 @@ function NodeStatusBase({
   );
 }
 
+
+/* Bolt: Memoized NodeStatus to prevent unnecessary re-renders when parent GenericNode state changes */
 export default memo(NodeStatusBase);
