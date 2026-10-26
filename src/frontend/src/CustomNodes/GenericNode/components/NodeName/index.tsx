@@ -76,6 +76,5 @@ function NodeNameBase({
   );
 }
 
-
 /* Bolt: Memoized NodeName to prevent unnecessary re-renders when parent GenericNode state changes */
 export default memo(NodeNameBase);
