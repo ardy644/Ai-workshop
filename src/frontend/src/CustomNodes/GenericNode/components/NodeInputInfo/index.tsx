@@ -1,4 +1,5 @@
 import { memo } from "react";
+
 function NodeInputInfoBase({ info }: { info: string }) {
   return (
     <div className="h-full w-full break-words">
