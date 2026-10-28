@@ -3,7 +3,9 @@ import { nodeColors, nodeIconsLucide } from "@/utils/styleUtils";
 import emojiRegex from "emoji-regex";
 import IconComponent from "../../../../components/genericIconComponent";
 
-export function NodeIcon({
+import { memo } from "react";
+
+export const NodeIcon = memo(function NodeIconBase({
   icon,
   dataType,
   showNode,
@@ -31,4 +33,4 @@ export function NodeIcon({
       iconColor={iconColor}
     />
   );
-}
+});
