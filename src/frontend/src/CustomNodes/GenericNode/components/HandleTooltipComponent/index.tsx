@@ -1,6 +1,8 @@
 import { convertTestName } from "@/components/storeCardComponent/utils/convert-test-name";
 
-export default function HandleTooltipComponent({
+import { memo } from "react";
+
+function HandleTooltipComponentBase({
   isInput,
   tooltipTitle,
   colors,
@@ -63,3 +65,5 @@ export default function HandleTooltipComponent({
     </div>
   );
 }
+
+export default memo(HandleTooltipComponentBase);
