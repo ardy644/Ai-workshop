@@ -1,8 +1,9 @@
+import { memo } from "react";
 import ShadTooltip from "../../../../components/shadTooltipComponent";
 import { outputComponentType } from "../../../../types/components";
 import { cn } from "../../../../utils/utils";
 
-export default function OutputComponent({
+function OutputComponentBase({
   selected,
   types,
   frozen = false,
@@ -74,3 +75,8 @@ export default function OutputComponent({
   //   </div>
   // );
 }
+
+// ⚡ Bolt Performance Optimization: Use React.memo to prevent unnecessary re-renders of the component
+// during frequent canvas interactions (panning, zooming) when props have not changed.
+OutputComponentBase.displayName = "OutputComponent";
+export default memo(OutputComponentBase);
