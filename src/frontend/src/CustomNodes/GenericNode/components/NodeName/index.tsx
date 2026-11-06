@@ -2,9 +2,9 @@ import InputComponent from "@/components/inputComponent";
 import ShadTooltip from "@/components/shadTooltipComponent";
 import useFlowsManagerStore from "@/stores/flowsManagerStore";
 import useFlowStore from "@/stores/flowStore";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 
-export default function NodeName({
+function NodeNameBase({
   display_name,
   selected,
   nodeId,
@@ -75,3 +75,7 @@ export default function NodeName({
     </div>
   );
 }
+
+// ⚡ Bolt Performance Optimization: Wrapped with React.memo() to prevent unnecessary re-renders
+// when parent GenericNode updates (e.g. during dragging or selection changes)
+export default memo(NodeNameBase);
