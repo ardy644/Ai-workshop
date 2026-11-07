@@ -1,7 +1,7 @@
-import { memo } from "react";
 import { useTypesStore } from "@/stores/typesStore";
 import { nodeColors, nodeIconsLucide } from "@/utils/styleUtils";
 import emojiRegex from "emoji-regex";
+import { memo } from "react";
 import IconComponent from "../../../../components/genericIconComponent";
 
 function NodeIconBase({
