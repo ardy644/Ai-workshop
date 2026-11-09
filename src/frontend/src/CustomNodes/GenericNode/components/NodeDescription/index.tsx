@@ -159,4 +159,5 @@ function NodeDescription({
   );
 }
 
+// Memoized to prevent unnecessary re-renders during graph interaction
 export default memo(NodeDescription);

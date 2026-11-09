@@ -181,4 +181,5 @@ function NodeStatus({
   );
 }
 
+// Memoized to prevent unnecessary re-renders during graph interaction
 export default memo(NodeStatus);
