@@ -1,6 +1,7 @@
+import { memo } from "react";
 import { Textarea } from "../../../../../../../components/ui/textarea";
 
-export default function ErrorOutput({ value }: { value: string }) {
+function ErrorOutputBase({ value }: { value: string }) {
   return (
     <Textarea
       className={`h-full w-full text-destructive custom-scroll`}
@@ -10,3 +11,5 @@ export default function ErrorOutput({ value }: { value: string }) {
     />
   );
 }
+
+export default memo(ErrorOutputBase);
