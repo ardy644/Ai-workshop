@@ -1,9 +1,9 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useState } from "react";
+import { memo, useState } from "react";
 import BaseModal from "../../../../modals/baseModal";
 import SwitchOutputView from "./components/switchOutputView";
 
-export default function OutputModal({
+function OutputModalBase({
   nodeId,
   outputName,
   children,
@@ -41,3 +41,5 @@ export default function OutputModal({
     </BaseModal>
   );
 }
+
+export default memo(OutputModalBase);

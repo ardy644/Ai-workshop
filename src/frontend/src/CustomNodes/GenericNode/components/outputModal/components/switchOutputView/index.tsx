@@ -1,4 +1,5 @@
 import { LogsLogType, OutputLogType } from "@/types/api";
+import { memo } from "react";
 import DataOutputComponent from "../../../../../../components/dataOutputComponent";
 import ForwardedIconComponent from "../../../../../../components/genericIconComponent";
 import {
@@ -100,4 +101,4 @@ const SwitchOutputView: React.FC<SwitchOutputViewProps> = ({
   );
 };
 
-export default SwitchOutputView;
+export default memo(SwitchOutputView);
